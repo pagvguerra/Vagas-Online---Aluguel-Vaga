@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Vagas Online - Aluguel Vaga</display-name>
+  <servlet>
+    <display-name>VagaController</display-name>
+    <servlet-name>VagaController</servlet-name>
+    <servlet-class>br.com.projeto.servlets.VagaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VagaController</servlet-name>
+    <url-pattern>/servlet/VagaController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>AutenticacaoController</display-name>
+    <servlet-name>AutenticacaoController</servlet-name>
+    <servlet-class>br.com.projeto.servlets.AutenticacaoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AutenticacaoController</servlet-name>
+    <url-pattern>/servlet/AutenticacaoController</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>autenticacao.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
