@@ -9,6 +9,15 @@ public class PaisBean implements Serializable {
 	private int id;
 	private String nome;
 	
+	public PaisBean() {
+	}
+	
+	public PaisBean(int id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+	
 	public int getId() {
 		return id;
 	}
