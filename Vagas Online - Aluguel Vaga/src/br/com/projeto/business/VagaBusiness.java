@@ -8,8 +8,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.projeto.beans.EstacionamentoTipoPagamentoBean;
 import br.com.projeto.beans.TipoVagaBean;
 import br.com.projeto.beans.VagaBean;
+import br.com.projeto.daos.EstacionamentoTipoPagamentoDAO;
 import br.com.projeto.daos.VagaDAO;
 import br.com.projeto.resources.Mensagens;
 import br.com.projeto.resources.URLs;
@@ -92,6 +94,9 @@ public class VagaBusiness {
 			
 			int precoAPagar = obterPrecoAPagar(vagaBean, horasUtilizadasLocacao);
 			request.setAttribute("precoAPagar", precoAPagar);
+			
+			List<EstacionamentoTipoPagamentoBean> listaEstacionamentoTipoPagamento = new EstacionamentoTipoPagamentoDAO().listaTiposPagamentosPorEstacionamento(idEstacionamento);
+			request.setAttribute("listaEstacionamentoTipoPagamento", listaEstacionamentoTipoPagamento);
 			
 		} catch (Exception e) {
 			throw e;

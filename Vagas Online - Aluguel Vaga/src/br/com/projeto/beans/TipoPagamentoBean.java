@@ -2,22 +2,13 @@ package br.com.projeto.beans;
 
 import java.io.Serializable;
 
-public class PaisBean implements Serializable {
+public class TipoPagamentoBean implements Serializable {
 
-	private static final long serialVersionUID = -6947991651755608525L;
+	private static final long serialVersionUID = -7874307450552026956L;
 
 	private int id;
 	private String nome;
-	
-	public PaisBean() {
-	}
-	
-	public PaisBean(int id, String nome) {
-		super();
-		this.id = id;
-		this.nome = nome;
-	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -46,7 +37,7 @@ public class PaisBean implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PaisBean other = (PaisBean) obj;
+		TipoPagamentoBean other = (TipoPagamentoBean) obj;
 		if (id != other.id)
 			return false;
 		if (nome == null) {
@@ -56,5 +47,5 @@ public class PaisBean implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

@@ -63,6 +63,19 @@
 							<div class="form-group">
 								Valor Total a Pagar..: <b>R$ ${precoAPagar},00</b>
 							</div>
+							<div class="form-group">
+								Valor Total a Pagar..: <b>R$ ${precoAPagar},00</b>
+							</div>
+							<div class="form-group">
+								Tipo de Pagamento..: 
+								<c:if test="${not empty listaEstacionamentoTipoPagamento}">
+									<select name="selectEstacionamentoTipoPagamento" class="form-control" >
+										<c:forEach var="estacionamentoTipoPagamento" items="${listaEstacionamentoTipoPagamento}" >
+											<option value="${estacionamentoTipoPagamento.tipoPagamentoBean.id}">${estacionamentoTipoPagamento.tipoPagamentoBean.nome}</option>
+										</c:forEach>	
+									</select>
+								</c:if>	
+							</div>
 							<br/><br/>
 							<center>
 							<input type="submit" onclick="return liberar();" name="botaoLiberar" id="botaoLiberar" value="LIBERAR VAGA" class="btn btn-success">
