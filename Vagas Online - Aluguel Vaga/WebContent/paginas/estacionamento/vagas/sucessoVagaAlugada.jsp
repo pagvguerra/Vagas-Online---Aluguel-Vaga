@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>ESTACIONAMENTO ONLINE - LIBERAÇÃO DE VAGA</title>
+		<title>ESTACIONAMENTO ONLINE - ALUGUEL DE VAGA</title>
 		<link href="${css_bootstrap}/bootstrap.min.css" rel="stylesheet">
 		<script src="${js}/jquery-2.1.1.min.js" ></script>
 		<script src="${js}/bootstrap/js/bootstrap.min.js"></script>
@@ -17,6 +17,7 @@
 				var form = document.getElementById("form");
 				form.action = 'http://localhost:8080/EstacionamentoOnlineEntradaFuncionario/servlet/VagaController';
 				form.method = 'post';
+				form.acao.value = 'LISTAR_TODOS';
 				form.submit();
 			}
 		</script>
@@ -27,16 +28,16 @@
 			<div class="col-sm-10">
 				<%@include file="../../includes/cabecalho.jsp" %>
 				<fieldset>
-				<legend><B>TELA DE LIBERAÇÃO DE VAGA</B></legend>
+				<legend><B>TELA DE ALUGUEL DE VAGA</B></legend>
 				<br><br>
 					<div class="form-group">
-						<b>Vaga liberada com sucesso</b>
+						<b>Vaga alugada com sucesso</b>
 					</div>
 					<br>
 					<form id="form">
 						<input type="hidden" name="acao" id="acao" value="LISTAR_TODOS">
 						<input type="hidden" name="idEstacionamento" id="idEstacionamento" value="${idEstacionamento}">
-
+						
 						<!-- BOTÃO VOLTAR -->
 						<input type="button" id="botaoVoltar" value="VOLTAR PARA A LISTA DE VAGAS" class="btn btn-info" onclick="voltar()"/>
 					</form>
