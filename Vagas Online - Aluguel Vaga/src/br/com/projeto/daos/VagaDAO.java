@@ -138,7 +138,7 @@ public class VagaDAO {
 			pstmt.setInt(2, vagaBean.getId());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
-			System.out.println("Erro no metodo alugarVaga. Pilha: " + e.getMessage());
+			System.out.println("Erro no metodo liberarVaga. Pilha: " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			DB.close(conn, pstmt, null);

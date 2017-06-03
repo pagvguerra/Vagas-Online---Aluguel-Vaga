@@ -16,8 +16,6 @@ public class VagaBean implements Serializable {
 	private TipoVagaBean tipoVagaBean;
 	private Date dataLocacaoVaga;
 	private String dataLocacaoVagaStr;
-	private Date dataLiberacaoVaga;
-	private String dataLiberacaoVagaStr;
 
 	public int getId() {
 		return id;
@@ -82,14 +80,6 @@ public class VagaBean implements Serializable {
 	public void setDataLocacaoVaga(Date dataLocacaoVaga) {
 		this.dataLocacaoVaga = dataLocacaoVaga;
 	}
-
-	public Date getDataLiberacaoVaga() {
-		return dataLiberacaoVaga;
-	}
-
-	public void setDataLiberacaoVaga(Date dataLiberacaoVaga) {
-		this.dataLiberacaoVaga = dataLiberacaoVaga;
-	}
 	
 	public String getDataLocacaoVagaStr() {
 		return dataLocacaoVagaStr;
@@ -99,28 +89,12 @@ public class VagaBean implements Serializable {
 		this.dataLocacaoVagaStr = dataLocacaoVagaStr;
 	}
 
-	public String getDataLiberacaoVagaStr() {
-		return dataLiberacaoVagaStr;
-	}
-
-	public void setDataLiberacaoVagaStr(String dataLiberacaoVagaStr) {
-		this.dataLiberacaoVagaStr = dataLiberacaoVagaStr;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + altura;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime
-				* result
-				+ ((dataLiberacaoVaga == null) ? 0 : dataLiberacaoVaga
-						.hashCode());
-		result = prime
-				* result
-				+ ((dataLiberacaoVagaStr == null) ? 0 : dataLiberacaoVagaStr
-						.hashCode());
 		result = prime * result
 				+ ((dataLocacaoVaga == null) ? 0 : dataLocacaoVaga.hashCode());
 		result = prime
@@ -151,16 +125,6 @@ public class VagaBean implements Serializable {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
-			return false;
-		if (dataLiberacaoVaga == null) {
-			if (other.dataLiberacaoVaga != null)
-				return false;
-		} else if (!dataLiberacaoVaga.equals(other.dataLiberacaoVaga))
-			return false;
-		if (dataLiberacaoVagaStr == null) {
-			if (other.dataLiberacaoVagaStr != null)
-				return false;
-		} else if (!dataLiberacaoVagaStr.equals(other.dataLiberacaoVagaStr))
 			return false;
 		if (dataLocacaoVaga == null) {
 			if (other.dataLocacaoVaga != null)

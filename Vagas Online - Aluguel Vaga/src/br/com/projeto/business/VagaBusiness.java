@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.projeto.beans.EstacionamentoTipoPagamentoBean;
+import br.com.projeto.beans.HistoricoAluguelVagaBean;
+import br.com.projeto.beans.TipoPagamentoBean;
 import br.com.projeto.beans.TipoVagaBean;
 import br.com.projeto.beans.VagaBean;
 import br.com.projeto.daos.EstacionamentoTipoPagamentoDAO;
+import br.com.projeto.daos.HistoricoAluguelVagaDAO;
+import br.com.projeto.daos.TipoPagamentoDAO;
 import br.com.projeto.daos.VagaDAO;
 import br.com.projeto.resources.Mensagens;
 import br.com.projeto.resources.URLs;
@@ -40,15 +44,15 @@ public class VagaBusiness {
 				preencheRetorno(request, response, Mensagens.ERRO_GENERICO, URLs.URL_ERRO_GENERICO);
 			} else if(acao.equalsIgnoreCase("LISTAR_TODOS")) {
 				geraListaEEncaminhaParaTelaDeListagem(request, response);
+			} else if(acao.equalsIgnoreCase("PREPARAR_ALUGAR_VAGA")) {
+				prepararAlugarVaga(request, response);
 			} else if(acao.equalsIgnoreCase("ALUGAR_VAGA")) {
 				alugarVaga(request, response);
-				geraListaEEncaminhaParaTelaDeListagem(request, response);
 			} else if(acao.equalsIgnoreCase("PREPARAR_LIBERAR_VAGA")) {
 				prepararLiberarVaga(request, response);
 				preencheRetorno(request, response, null, "/paginas/estacionamento/vagas/liberarVaga.jsp");
 			} else if(acao.equalsIgnoreCase("LIBERAR_VAGA")) {
 				liberarVaga(request, response);
-				geraListaEEncaminhaParaTelaDeListagem(request, response);
 			}
 		
 		} catch (Exception e) {
@@ -59,6 +63,18 @@ public class VagaBusiness {
 		return urlRetorno;
 	}
 
+	private void prepararAlugarVaga(HttpServletRequest request, HttpServletResponse response) throws Exception, IOException {
+
+		int idVaga = Integer.parseInt(request.getParameter("id"));
+		VagaBean vagaBean = new VagaDAO().buscarPorId(idVaga);
+		request.setAttribute("vagaBean", vagaBean);
+
+		int idEstacionamento = Integer.parseInt(request.getParameter("idEstacionamento"));
+		request.setAttribute("idEstacionamento", idEstacionamento);
+
+		preencheRetorno(request, response, null, "/paginas/estacionamento/vagas/prepararAlugarVaga.jsp");
+	}
+
 	private void geraListaEEncaminhaParaTelaDeListagem(HttpServletRequest request, HttpServletResponse response) throws Exception, IOException {
 		listarTodos(request, response);
 		preencheRetorno(request, response, null, "/paginas/estacionamento/vagas/listarVagasParaAluguel.jsp");
@@ -66,15 +82,19 @@ public class VagaBusiness {
 
 	private void alugarVaga(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		try {
+			int idEstacionamento = Integer.parseInt(request.getParameter("idEstacionamento"));
+			request.setAttribute("idEstacionamento", idEstacionamento);
+
 			int idVaga = Integer.parseInt(request.getParameter("id"));
-			//VagaBean vagaBean = new VagaDAO().buscarPorId(idVaga);
-		
+			String modelo = request.getParameter("modelo");
+			String placa = request.getParameter("placa");
+
 			new VagaDAO().alugarVaga(idVaga);
 
-			//registrar historico de aluguel da vaga nesse ponto, informando vaga alugada e horario de entrada, colocar o status para vaga Indisponivel
-			//new HistoricoVagaDAO().inserirHistoricoVaga(vagaBean);
-			request.setAttribute("msgSucessoAlugar", "Vaga alugada com sucesso");
-		
+			VagaBean vagaBean = new VagaDAO().buscarPorId(idVaga);
+			new HistoricoAluguelVagaDAO().inserirHistoricoAluguelVaga(vagaBean, modelo, placa);
+
+			preencheRetorno(request, response, null, "/paginas/estacionamento/vagas/sucessoVagaAlugada.jsp");
 		} catch (Exception e) {
 			throw e;
 		}		
@@ -135,11 +155,19 @@ public class VagaBusiness {
 
 			int idVaga = Integer.parseInt(request.getParameter("id"));
 			VagaBean vagaBean = new VagaDAO().buscarPorId(idVaga);
+			
+			int idTipoPagamento = Integer.parseInt(request.getParameter("selectEstacionamentoTipoPagamento"));
+			TipoPagamentoBean tipoPagamentoBean = new TipoPagamentoDAO().buscarTipoPagamentoPorId(idTipoPagamento);
+			
+			HistoricoAluguelVagaBean historicoAluguelVagaBean =   new HistoricoAluguelVagaDAO().buscaDadosParaEncontrarHistoricoAluguelVaga(vagaBean);
+			historicoAluguelVagaBean.setValorCobrado(Integer.parseInt(request.getParameter("valorCobrado")));
+			historicoAluguelVagaBean.setTipoPagamento(tipoPagamentoBean.getNome());
+			
+			new HistoricoAluguelVagaDAO().atualizarHistoricoAluguelVaga(historicoAluguelVagaBean);
+
 			new VagaDAO().liberarVaga(vagaBean);
-			
-			//registrar historico de aluguel da vaga nesse ponto, informando vaga fechada, horario de entrada, horario de saida e valor a pagar, colocar o status para vaga fechada (status F) com data de entrada e saida
-			//new HistoricoVagaDAO().inserirHistoricoVaga(vagaBean);
-			
+			preencheRetorno(request, response, null, "/paginas/estacionamento/vagas/sucessoLiberarVaga.jsp");
+
 		} catch (Exception e) {
 			throw e;
 		}

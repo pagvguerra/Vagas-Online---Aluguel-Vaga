@@ -12,20 +12,22 @@
 		<script src="${js}/jquery-2.1.1.min.js" ></script>
 		<script src="${js}/bootstrap/js/bootstrap.min.js"></script>
 		<script>
-		function alugarVaga(idVaga) {
+		function prepararAlugarVaga(idVaga, idEstacionamento) {
 			var form = document.getElementById("form");
 			form.action = 'http://localhost:8080/EstacionamentoOnlineEntradaFuncionario/servlet/VagaController';
 			form.method = 'post';
-			form.acao.value = 'ALUGAR_VAGA';
+			form.acao.value = 'PREPARAR_ALUGAR_VAGA';
 			form.id.value = idVaga;
+			form.idEstacionamento.value = idEstacionamento;
 			form.submit();
 		}
-		function liberarVaga(idVaga) {
+		function liberarVaga(idVaga, idEstacionamento) {
 			var form = document.getElementById("form");
 			form.action = 'http://localhost:8080/EstacionamentoOnlineEntradaFuncionario/servlet/VagaController';
 			form.method = 'post';
 			form.acao.value = 'PREPARAR_LIBERAR_VAGA';
 			form.id.value = idVaga;
+			form.idEstacionamento.value = idEstacionamento;
 			form.submit();
 		}
 		</script>
@@ -38,18 +40,11 @@
 				<fieldset>
 					<legend>
 					<B>TELA DE ALUGUEL DE VAGAS DO ESTACIONAMENTO</B></legend>
-					<c:if test="${not empty msgSucessoAlugar}">
-	    				<br>
-	    				<font color="red"><b>${msgSucessoAlugar}</b></font><br/></br>
-					</c:if>
 					<form id="form" name="form" method="post">
 					<input name="acao" id="acao" type="hidden">
 					<input name="id" id="id" type="hidden" value="">
 					<input name="idEstacionamento" id="idEstacionamento" type="hidden" value="${idEstacionamento}">
-					<c:if test="${empty msgSucessoAlugar}">
-						<br>
-					</c:if>	
-					<br>
+					<br><br>
 					<table width="100%" class="table table-hover">
 						<thead>
 						<tr>
@@ -77,10 +72,10 @@
 								<td>
 									<center>
 										<c:if test="${vaga.status == 'D'}">
-											<input type="submit" onclick="return alugarVaga(${vaga.id});" name="botaoAlugarVaga" id="botaoAlugarVaga" value="ALUGAR VAGA" class="btn btn-warning">
+											<input type="submit" onclick="return prepararAlugarVaga(${vaga.id}, ${idEstacionamento});" name="botaoPrepararAlugarVaga" id="botaoPrepararAlugarVaga" value="ALUGAR VAGA" class="btn btn-warning">
 										</c:if>
 										<c:if test="${vaga.status == 'I'}">
-											<input type="submit" onclick="return liberarVaga(${vaga.id});" name="botaoLiberarVaga" id="botaoLiberarVaga" value="LIBERAR VAGA" class="btn btn-info">
+											<input type="submit" onclick="return liberarVaga(${vaga.id}, ${idEstacionamento});" name="botaoLiberarVaga" id="botaoLiberarVaga" value="LIBERAR VAGA" class="btn btn-info">
 										</c:if>
 									</center>	
 								</td>

@@ -7,16 +7,16 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>ESTACIONAMENTO ONLINE - LIBERAÇÃO DE VAGA</title>
+		<title>ESTACIONAMENTO ONLINE - ALUGAR VAGA</title>
 		<link href="${css_bootstrap}/bootstrap.min.css" rel="stylesheet">
 		<script src="${js}/jquery-2.1.1.min.js" ></script>
 		<script src="${js}/bootstrap/js/bootstrap.min.js"></script>
 		<script>
-		function liberar() {
+		function alugar() {
 			var form = document.getElementById("form");
 			form.action = 'http://localhost:8080/EstacionamentoOnlineEntradaFuncionario/servlet/VagaController';
 			form.method = 'post';
-			form.acao.value = 'LIBERAR_VAGA';
+			form.acao.value = 'ALUGAR_VAGA';
 			form.submit();
 		}		
 		
@@ -36,50 +36,30 @@
 			<div class="col-sm-10">
 				<%@include file="../../includes/cabecalho.jsp" %>
 				<fieldset>
-				<legend><B>HOME - TELA DE LIBERAÇÃO DE VAGA</B></legend>
+				<legend><B>HOME - TELA DE ALUGUEL DE VAGA</B></legend>
 					<form id="form" name="form">
 					<input name="acao" id="acao" type="hidden">
 					<input name="id" id="id" type="hidden" value="${vagaBean.id}">
 					<input name="idEstacionamento" id="idEstacionamento" type="hidden" value="${idEstacionamento}">
-					<input name="valorCobrado" id="valorCobrado" type="hidden" value="${precoAPagar}">
 						<br/>
 						<fieldset>
-							<legend>Liberação de Vaga</legend>
+							<legend>Aluguel de Vaga</legend>
 							<br>
 							<div class="form-group">
 								Código da Vaga..: ${vagaBean.codigo} - Tipo: ${vagaBean.tipoVagaBean.nome}
 							</div>
 							<div class="form-group">
-								Data/Hora Entrada..: <b>${vagaBean.dataLocacaoVagaStr}</b>
-							</div>
-							<div class="form-group">
 								Preço por/Hora..: <b>R$ ${vagaBean.tipoVagaBean.preco},00</b>
 							</div>
 							<div class="form-group">
-								Quantidade de Horas utilizadas..: <b>${horasUtilizadasLocacao} 
-								<c:if test="${horasUtilizadasLocacao <= 1}">hora</c:if>
-								<c:if test="${horasUtilizadasLocacao > 1}">horas</c:if>
-								</b>
+								Placa..: <input class="form-control" type="text" name="placa" id="placa">
 							</div>
 							<div class="form-group">
-								Valor Total a Pagar..: <b>R$ ${precoAPagar},00</b>
-							</div>
-							<div class="form-group">
-								Valor Total a Pagar..: <b>R$ ${precoAPagar},00</b>
-							</div>
-							<div class="form-group">
-								Tipo de Pagamento..: 
-								<c:if test="${not empty listaEstacionamentoTipoPagamento}">
-									<select name="selectEstacionamentoTipoPagamento" class="form-control" >
-										<c:forEach var="estacionamentoTipoPagamento" items="${listaEstacionamentoTipoPagamento}" >
-											<option value="${estacionamentoTipoPagamento.tipoPagamentoBean.id}">${estacionamentoTipoPagamento.tipoPagamentoBean.nome}</option>
-										</c:forEach>	
-									</select>
-								</c:if>	
+								Modelo..: <input class="form-control" type="text" name="modelo" id="modelo">
 							</div>
 							<br/><br/>
 							<center>
-							<input type="submit" onclick="return liberar();" name="botaoLiberar" id="botaoLiberar" value="LIBERAR VAGA" class="btn btn-success">
+							<input type="submit" onclick="return alugar();" name="botaoAlugar" id="botaoAlugar" value="ALUGAR VAGA" class="btn btn-success">
 							<input type="submit" onclick="return voltar();" name="botaoVoltar" id="botaoVoltar" value="VOLTAR" class="btn btn-info">
 							</center>	
 						</fieldset> 
