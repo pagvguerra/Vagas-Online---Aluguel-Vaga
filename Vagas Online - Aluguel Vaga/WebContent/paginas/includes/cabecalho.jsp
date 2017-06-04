@@ -1,6 +1,6 @@
 <table width="100%">
 	<tr>
-		<td><img src="${pageContext.request.contextPath}/estaticos/images/logo_estacionamento.png" width="160px;" height="120px;"></td>
+		<td><img src="${pageContext.request.contextPath}/estaticos/images/logotipo.png" width="34%;" height="70%;"></td>
 		<td><b>Estacionamento:</b>&nbsp;${estacionamentoBean.nomeFantasia}
 			<br><br>
 			<b>Nome do Funcionário..:</b>&nbsp;${usuario.nome}

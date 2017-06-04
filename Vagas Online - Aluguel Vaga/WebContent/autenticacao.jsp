@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>ESTACIONAMENTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO ONLINE - HOME FUNCIONÁRIO</title>
+		<title>ESTACIONAMENTO ONLINE - HOME FUNCIONÁRIO</title>
 		<link href="${css_bootstrap}/bootstrap.min.css" rel="stylesheet">
 		<script src="${js}/jquery-2.1.1.min.js" ></script>
 		<script src="${js}/bootstrap/js/bootstrap.min.js"></script>
@@ -19,7 +19,7 @@
 		<div class="container">
 			<div class="col-sm-2">
 				<br><br><br><br><br><br>
-				<img src="${images}/logo_estacionamento.png" width="160px;" height="140px;">
+				<img src="${images}/logotipo.png" width="110%;" height="25%;">
 			</div>
 			<div class="col-sm-5">
 				<fieldset>
