@@ -65,9 +65,6 @@
 								Valor Total a Pagar..: <b>R$ ${precoAPagar},00</b>
 							</div>
 							<div class="form-group">
-								Valor Total a Pagar..: <b>R$ ${precoAPagar},00</b>
-							</div>
-							<div class="form-group">
 								Tipo de Pagamento..: 
 								<c:if test="${not empty listaEstacionamentoTipoPagamento}">
 									<select name="selectEstacionamentoTipoPagamento" class="form-control" >
