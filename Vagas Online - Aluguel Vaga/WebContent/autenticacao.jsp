@@ -44,14 +44,6 @@
 						<!-- BOTÃO ENVIAR -->
 						<input type="button" id="enviar" value="LOGAR" class="btn btn-primary"/>
 					</form>
-					<br><br>
-					<form name="redefineSenha">					
-						<!-- REDEFINIR SENHA -->
-						<div class="form-group">
-							<a href="#" id="popRedefinirSenha"><span class="glyphicon glyphicon-cog"></span>&nbsp;Criar/Redefinir Senha</a>
-						</div>
-					</form>
-					
 				</fieldset>	
 			</div>
 		</div>		

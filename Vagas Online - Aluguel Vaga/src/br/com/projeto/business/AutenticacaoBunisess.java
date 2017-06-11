@@ -42,10 +42,6 @@ public class AutenticacaoBunisess {
 				logout(request, response);
 			} else if(acao.equalsIgnoreCase("ENTRADA")) {
 				preencheRetorno(request, response, "", URLs.URL_LOGIN);	
-			} else if(acao.equalsIgnoreCase("FORM_REDEFINIR_SENHA")) {
-				preencheRetorno(request, response, null, URLs.URL_REDEFINIR_SENHA);	
-			} else if(acao.equalsIgnoreCase("REDEFINIR_SENHA")) {
-				redefinirSenha(request, response, null, URLs.URL_REDEFINIR_SENHA);	
 			}
 			
 		} catch (Exception e) {
@@ -56,29 +52,6 @@ public class AutenticacaoBunisess {
 		return urlRetorno;
 	}
 	
-	private void redefinirSenha(HttpServletRequest request, HttpServletResponse response, Object object, String redefinirSenha) throws Exception {
-		UsuarioBean usuarioBean =	null;
-
-		try {
-
-			usuarioBean = new UsuarioBean();
-			usuarioBean.setLogin(request.getParameter(CAMPO_LOGIN).trim());
-			usuarioBean.setSenha(Util.criptografa(request.getParameter(CAMPO_SENHA).trim()));
-			
-			boolean alterouSenha = new AutenticacaoDAO().redefineSenhaPorLogin(usuarioBean);
-			
-			if(alterouSenha) {
-				preencheRetorno(request, response, null, URLs.URL_REPOSTA_REDEFINIR_SENHA);
-			} else {
-				preencheRetorno(request, response, Mensagens.USUARIO_NAO_ENCONTRADO, URLs.URL_ERRO_REDEFINIR_SENHA);
-			}
-			
-		} catch (Exception e) {
-			throw e;
-		}
-		
-	}
-
 	private void login(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		AutenticacaoBean autenticacaoBean =	null;
 
