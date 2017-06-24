@@ -14,6 +14,21 @@
 		<script>
 		function alugar() {
 			var form = document.getElementById("form");
+			var placa = $("#placa").val().trim();
+			var modelo = $("#modelo").val().trim();
+				
+			if(placa === undefined || placa == null || placa === '') {
+				alert('Preencha a placa');
+				$("#placa").focus();
+				return false;
+			}
+
+			if(modelo === undefined || modelo == null || modelo === '') {
+				alert('Preencha o Modelo');
+				$("#modelo").focus();
+				return false;
+			}
+				
 			form.action = 'http://localhost:8080/EstacionamentoOnlineEntradaFuncionario/servlet/VagaController';
 			form.method = 'post';
 			form.acao.value = 'ALUGAR_VAGA';
@@ -52,10 +67,10 @@
 								Preço por/Hora..: <b>R$ ${vagaBean.tipoVagaBean.preco},00</b>
 							</div>
 							<div class="form-group">
-								Placa..: <input class="form-control" type="text" name="placa" id="placa">
+								Placa..: <input class="form-control" type="text" name="placa" id="placa" maxlength="10">
 							</div>
 							<div class="form-group">
-								Modelo..: <input class="form-control" type="text" name="modelo" id="modelo">
+								Modelo..: <input class="form-control" type="text" name="modelo" id="modelo" maxlength="50">
 							</div>
 							<br/><br/>
 							<center>
