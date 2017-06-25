@@ -33,12 +33,14 @@
 
 						<!-- LOGIN -->
 						<div class="form-group">
-							<b>Login..:</b> <input type="text" name="LOGIN" id="login" maxlength="50" class="form-control" placeholder="INFORME O LOGIN">
+							<font color="red">*</font>&nbsp;<b>Login..:</b>
+							<input type="text" name="LOGIN" id="login" maxlength="50" class="form-control" placeholder="INFORME O LOGIN">
 						</div>	
 						
 						<!-- SENHA -->
 						<div class="form-group">
-							<b>Senha..:</b> <input type="password" name="SENHA" id="senha" maxlength="100" class="form-control" placeholder="INFORME A SENHA">
+							<font color="red">*</font>&nbsp;<b>Senha..:</b>
+							<input type="password" name="SENHA" id="senha" maxlength="100" class="form-control" placeholder="INFORME A SENHA">
 						</div>
 						
 						<!-- BOTÃO ENVIAR -->

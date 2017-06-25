@@ -67,10 +67,12 @@
 								Preço por/Hora..: <b>R$ ${vagaBean.tipoVagaBean.preco},00</b>
 							</div>
 							<div class="form-group">
-								Placa..: <input class="form-control" type="text" name="placa" id="placa" maxlength="10">
+								<font color="red">*</font>&nbsp;Placa..:
+								<input class="form-control" type="text" name="placa" id="placa" maxlength="10">
 							</div>
 							<div class="form-group">
-								Modelo..: <input class="form-control" type="text" name="modelo" id="modelo" maxlength="50">
+								<font color="red">*</font>&nbsp;Modelo..:
+								<input class="form-control" type="text" name="modelo" id="modelo" maxlength="50">
 							</div>
 							<br/><br/>
 							<center>
