@@ -92,7 +92,7 @@ public class VagaBusiness {
 			new VagaDAO().alugarVaga(idVaga);
 
 			VagaBean vagaBean = new VagaDAO().buscarPorId(idVaga);
-			new HistoricoAluguelVagaDAO().inserirHistoricoAluguelVaga(vagaBean, modelo, placa);
+			new HistoricoAluguelVagaDAO().inserirHistoricoAluguelVaga(vagaBean, modelo, placa, idEstacionamento);
 
 			preencheRetorno(request, response, null, "/paginas/estacionamento/vagas/sucessoVagaAlugada.jsp");
 		} catch (Exception e) {

@@ -13,11 +13,11 @@ import com.mysql.jdbc.Statement;
 
 public class HistoricoAluguelVagaDAO {
 
-	private static final String INSERIR	=	"INSERT INTO HISTORICO_ALUGUEL(TIPO_VAGA, MODELO, PLACA, CODIGO_VAGA, HORA_ENTRADA) VALUES(?, ?, ?, ?, ?)";
+	private static final String INSERIR	=	"INSERT INTO HISTORICO_ALUGUEL(TIPO_VAGA, MODELO, PLACA, CODIGO_VAGA, HORA_ENTRADA, ID_ESTACIONAMENTO) VALUES(?, ?, ?, ?, ?, ?)";
 	private static final String BUSCA_DADOS_PARA_ENCONTRAR_HISTORICO_ALUGUEL_VAGA = "SELECT * FROM HISTORICO_ALUGUEL WHERE TIPO_VAGA = ? AND CODIGO_VAGA = ? AND HORA_ENTRADA = ?";
 	private static final String ATUALIZAR_HISTORICO_ALUGUEL_VAGA = "UPDATE HISTORICO_ALUGUEL SET HORA_SAIDA = CURRENT_TIMESTAMP, VALOR_COBRADO = ?, TIPO_PAGAMENTO = ? WHERE ID = ?";
 	
-	public void inserirHistoricoAluguelVaga(VagaBean vagaBean, String modelo, String placa) {
+	public void inserirHistoricoAluguelVaga(VagaBean vagaBean, String modelo, String placa, int idEstacionamento) {
 		Connection conn				=	null;
 		PreparedStatement pstmt		=	null;
 		ResultSet rs 				= 	null;
@@ -33,6 +33,7 @@ public class HistoricoAluguelVagaDAO {
 			pstmt.setString(3, placa);
 			pstmt.setString(4, vagaBean.getCodigo());
 			pstmt.setTimestamp(5, tmp);
+			pstmt.setInt(6, idEstacionamento);
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
