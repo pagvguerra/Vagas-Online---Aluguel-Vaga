@@ -9,7 +9,6 @@ import br.com.projeto.beans.CidadeBean;
 import br.com.projeto.beans.EnderecoBean;
 import br.com.projeto.beans.EstadoBean;
 import br.com.projeto.beans.PaisBean;
-import br.com.projeto.beans.TipoLogradouroBean;
 import br.com.projeto.db.DB;
 
 import com.mysql.jdbc.Statement;
@@ -36,11 +35,6 @@ public class EnderecoDAO {
 			
 			if(rs.next()) {
 			
-				//TIPO LOGRADOURO
-				TipoLogradouroBean tipoLogradouroBean = new TipoLogradouroBean();
-				tipoLogradouroBean.setId(rs.getInt("ID_TIPOLOGRADOURO"));
-				tipoLogradouroBean.setNome(rs.getString("NOME_TIPOLOGRADOURO"));
-				
 				//BAIRRO
 				BairroBean bairroBean = new BairroBean();
 				bairroBean.setId(rs.getInt("ID_BAIRRO"));
@@ -67,7 +61,6 @@ public class EnderecoDAO {
 				enderecoBean.setNomeLogradouro(rs.getString("NOME_LOGRADOURO"));
 				enderecoBean.setNumero(rs.getInt("NUMERO_LOGRADOURO"));
 				enderecoBean.setCep(rs.getString("CEP_LOGRADOURO"));
-				enderecoBean.setTipoLogradouroBean(tipoLogradouroBean);
 				enderecoBean.setBairroBean(bairroBean);
 				enderecoBean.setCidadeBean(cidadeBean);
 				enderecoBean.setEstadoBean(estadoBean);
@@ -98,7 +91,7 @@ public class EnderecoDAO {
 			pstmt.setString(1, obj.getNomeLogradouro());
 			pstmt.setInt(2, obj.getNumero());
 			pstmt.setString(3, obj.getCep());
-			pstmt.setInt(4, obj.getTipoLogradouroBean().getId());
+			pstmt.setInt(4, 0);
 			pstmt.setInt(5, obj.getBairroBean().getId());
 			pstmt.setInt(6, obj.getCidadeBean().getId());
 			pstmt.setInt(7, obj.getEstadoBean().getId());
@@ -134,7 +127,7 @@ public class EnderecoDAO {
 			pstmt.setString(1, obj.getNomeLogradouro());
 			pstmt.setInt(2, obj.getNumero());
 			pstmt.setString(3, obj.getCep());
-			pstmt.setInt(4, obj.getTipoLogradouroBean().getId());
+			pstmt.setInt(4, 0);
 			pstmt.setInt(5, obj.getBairroBean().getId());
 			pstmt.setInt(6, obj.getCidadeBean().getId());
 			pstmt.setInt(7, obj.getEstadoBean().getId());
